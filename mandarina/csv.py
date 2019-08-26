@@ -35,6 +35,7 @@ def is_date_in_last_line(todays_date, filepath):
 def delete_last_line(filepath):
     """
     Deletes the last line of the specified file.
+    If the file has only one line, it is left.
     :param filepath: Filename to delete the last line from
     :return: None
     """

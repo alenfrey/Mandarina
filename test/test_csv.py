@@ -17,10 +17,11 @@ class CsvTests(unittest.TestCase):
         delete_file("test.csv")
 
     def test_delete_last_line(self):
-        random_int = random.randint(1,10)
+        random_int = random.randint(0,10)
         with open("test.csv", "w") as filehandle:
             for i in range(random_int):
                 filehandle.write(str(datetime.datetime.now()) + "\n")
+
         delete_last_line("test.csv")
         self.assertEqual(random_int - 1, count_lines("test.csv"))
         delete_file("test.csv")

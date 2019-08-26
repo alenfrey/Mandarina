@@ -28,18 +28,16 @@ class Benchmark:
                  deviation.
         """
         timings = []
-        stdout = sys.stdout
+        if print_output:
+            print("Runs Median Mean Stddev")
         for i in range(runs):
-            sys.stdout = None
             startTime = time.time()
             function()
             seconds = time.time() - startTime
-            sys.stdout = stdout
             timings.append(seconds)
             median = statistics.median(timings)
             mean = statistics.mean(timings)
             if print_output:
-                print("Runs Median Mean Stddev")
                 if i < 10 or i % 10 == 9:
                     print(
                         "{0}\t{1:3.2f}\t{2:3.2f}\t{3:3.2f}".format(
@@ -47,6 +45,6 @@ class Benchmark:
                             median,
                             mean,
                             statistics.stdev(timings, mean) if i > 1 else 0,
-                        )
+                            )
                     )
         return (median, mean, statistics.stdev(timings, mean))
