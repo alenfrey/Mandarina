@@ -11,11 +11,11 @@ At the moment, Mandarina provides the follwing modules:
 
 
 ## License 
-* see [LICENSE](https://github.com/sunpip/Mandarina/blob/master/LICENSE) file
+* Check the [LICENSE](https://github.com/sunpip/Mandarina/blob/master/LICENSE) file
 
 ## Authors
 
-Alen Frey
+- Alen Frey
 
 ## Version 
 * Version 0.0.3
