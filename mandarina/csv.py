@@ -3,7 +3,6 @@ This module provides functions to work with csv files.
 """
 
 import subprocess
-import os
 import codecs
 import warnings
 import os
@@ -20,24 +19,46 @@ def day_is_already_written(todays_date, filepath):
 def is_date_in_last_line(todays_date, filepath):
     """
     Checks if the specified date is already written in the last line
-    of a csv file.
+    of a csv file. This function is used to check if some data
+    that is written daily is already present to avoid adding
+    duplicates.
 
     :param todays_date: Date as string like "2018-01-01"
     :param filepath: Filename to check
     :return: True if Date is present in the last line of the file
+
+    Example
+    >>> is_date_in_last_line("2018-01-01", "data.csv")
+
     """
     line = subprocess.check_output(["tail", "-1", filepath])
     last_line = line.decode("utf-8")
 
     return todays_date in last_line
 
+def is_file_empty(filepath):
+    """
+    Checks if a file has 0 lines.
+    :param filepath: Path to the file
+    :return: True if file has 0 lines, else False
+
+    Example
+    >>> is_file_empty("data.csv")
+
+    """
+    return os.stat(filepath).st_size == 0
 
 def delete_last_line(filepath):
     """
     Deletes the last line of the specified file.
+
     If the file has only one line, it is left.
     :param filepath: Filename to delete the last line from
     :return: None
+
+    Example
+    >>> delete_last_line("data.csv")
+
     """
     with open(filepath, "r+", encoding="utf-8") as filehandle:
         # Move the pointer (similar to a cursor in a text editor) to the end of the file
@@ -68,9 +89,9 @@ def create_headers(filepath, header_row):
     :param header_row: String for the header row
     :return True if file was empty and header is written
 
-    Example usage:
-
+    Example
     >>> create_headers("data.csv", "date,time,temperature,humidity")
+
     """
     with open(filepath, "a") as filehandle:
         # Check if file is empty and write row
@@ -86,9 +107,13 @@ def count_lines(filepath):
 
     :param file: The filepath
     :return: Number of lines contained in the file.
+
+    Example
+    >>> count_lines("data.csv")
+
     """
     with codecs.open(filepath, encoding="utf-8", errors="ignore") as filehandle:
-        if os.stat(filepath).st_size == 0:
+        if is_file_empty(filepath):
             return 0
         else:
             return len(filehandle.read().splitlines())
@@ -100,6 +125,10 @@ def delete_file(filepath):
 
     :param filepath: Path of the file to be deleted
     :return: True if the file was deleted, else False
+
+    Example
+    >>> delete_file("data.csv")
+
     """
     if os.path.isfile(filepath):
         os.remove(filepath)

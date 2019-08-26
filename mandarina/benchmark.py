@@ -26,6 +26,10 @@ class Benchmark:
         :param function: The function to benchmark
         :return: The mean running time in seconds and its standard
                  deviation.
+
+        Example
+        >>> Benchmark.run(lambda: time.sleep(1), 100)
+
         """
         timings = []
         if print_output:
@@ -45,6 +49,6 @@ class Benchmark:
                             median,
                             mean,
                             statistics.stdev(timings, mean) if i > 1 else 0,
-                            )
+                        )
                     )
         return (median, mean, statistics.stdev(timings, mean))

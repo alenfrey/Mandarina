@@ -1,4 +1,3 @@
-from mandarina.benchmark import Benchmark
 from mandarina.csv import *
 import unittest
 import random
