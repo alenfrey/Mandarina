@@ -119,20 +119,4 @@ def count_lines(filepath):
             return len(filehandle.read().splitlines())
 
 
-def delete_file(filepath):
-    """
-    Deletes the specified file if the file exists.
 
-    :param filepath: Path of the file to be deleted
-    :return: True if the file was deleted, else False
-
-    Example
-    >>> delete_file("data.csv")
-
-    """
-    if os.path.isfile(filepath):
-        os.remove(filepath)
-        return True
-    else:
-        print("Error: %s file not found" % filepath)
-        return False

@@ -1,0 +1,4 @@
+Add Random Person generator with Name, Age, Adress and so on..
+Add matplotlib subfunction plots
+Ask StackOverflow if combining delete_dir and delete_file
+is a good idea

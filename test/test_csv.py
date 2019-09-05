@@ -1,7 +1,10 @@
 from mandarina.csv import *
+
 import unittest
 import random
 import datetime
+
+from mandarina.file import delete_file
 
 
 class CsvTests(unittest.TestCase):
@@ -16,7 +19,7 @@ class CsvTests(unittest.TestCase):
         delete_file("test.csv")
 
     def test_delete_last_line(self):
-        random_int = random.randint(0,10)
+        random_int = random.randint(0, 10)
         with open("test.csv", "w") as filehandle:
             for i in range(random_int):
                 filehandle.write(str(datetime.datetime.now()) + "\n")
