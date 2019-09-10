@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mandarina",
-    version="0.0.3",
+    version="0.0.4",
     author="Alen Frey",
     author_email="mailtoalenf@gmail.com",
     description="Personal data science library",
