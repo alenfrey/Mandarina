@@ -10,6 +10,7 @@ def create_dir_if_doesnt_exist(folderpath):
 
     :param folderpath:
     :return: True if folder was created, else False
+
     """
     if not os.path.exists(folderpath):
         os.makedirs(folderpath)
@@ -34,6 +35,7 @@ def delete_file(filepath):
 def delete_dir(dirpath):
     """
     Deletes the specified directory if it exists
+
     :param dirpath: Path to the directory
     :return: True if the directory was deleted, else False
 
@@ -44,3 +46,15 @@ def delete_dir(dirpath):
     else:
         print("Error: %s directory not found" % dirpath)
         return False
+
+def count_files_in_dir(dirpath):
+    """
+    Counts the number of files contained in the specified
+    directory.
+
+    :param dirpath: Path to the directory
+    :return: Number of files
+
+    """
+    return len([name for name in os.listdir(dirpath)
+                       if os.path.isfile(os.path.join(dirpath, name))])
