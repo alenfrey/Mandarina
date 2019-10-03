@@ -18,7 +18,7 @@ At the moment, Mandarina provides the following modules:
 - Alen Frey
 
 ## Version 
-* Version 0.0.3
+* Version 0.0.4
 
 ## How to install
 ```shell script
