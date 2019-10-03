@@ -1,2 +1,6 @@
-Add Random Person generator with Name, Age, Adress and so on..
-Add Timing functions - run after x seconds, run every x seconds
+Add Random Person generator with Name, Age, Adress and so on
+Add functionality to time the execution of functions - run after x seconds, run every x seconds etc. 
+Generate documentation with Sphinx from the docstrings in the code 
+Test and document the function in to_add.py to convert bytes to human readable units
+Clean and document to release version 0.0.5
+
