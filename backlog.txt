@@ -1,2 +1,2 @@
-Add Random Person generator with Name, Age, Adress and so on..
-Add Timing functions - run after x seconds, run every x seconds
+# Add Random Person generator with Name, Age, Adress and so on..
+# Add Timing functions - run after x seconds, run every x seconds
