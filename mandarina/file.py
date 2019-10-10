@@ -1,8 +1,9 @@
 """
 This module provides functionality to work with files and folders.
 """
-
+import math
 import os
+
 
 def create_dir_if_doesnt_exist(folderpath):
     """
@@ -16,6 +17,7 @@ def create_dir_if_doesnt_exist(folderpath):
         os.makedirs(folderpath)
         return True
     return False
+
 
 def delete_file(filepath):
     """
@@ -32,6 +34,7 @@ def delete_file(filepath):
         print("Error: %s file not found" % filepath)
         return False
 
+
 def delete_dir(dirpath):
     """
     Deletes the specified directory if it exists
@@ -47,6 +50,7 @@ def delete_dir(dirpath):
         print("Error: %s directory not found" % dirpath)
         return False
 
+
 def count_files_in_dir(dirpath):
     """
     Counts the number of files contained in the specified
@@ -56,5 +60,26 @@ def count_files_in_dir(dirpath):
     :return: Number of files
 
     """
-    return len([name for name in os.listdir(dirpath)
-                       if os.path.isfile(os.path.join(dirpath, name))])
+    return len(
+        [
+            name
+            for name in os.listdir(dirpath)
+            if os.path.isfile(os.path.join(dirpath, name))
+        ]
+    )
+
+
+def convert_size_bytes_to_human_readable_format(size_bytes):
+    """
+    Converts filesize in bytes to a human readable format.
+
+    :param size_bytes: The size in bytes
+    :return: Bytes converted to readble format
+    """
+    if size_bytes == 0:
+        return "0B"
+    size_name = ("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB")
+    i = int(math.floor(math.log(size_bytes, 1024)))
+    p = math.pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return f"{s} {size_name[i]}"

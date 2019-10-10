@@ -41,4 +41,3 @@ def random_datetime(start, end):
     int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
     random_second = random.randrange(int_delta)
     return start + datetime.timedelta(seconds=random_second)
-

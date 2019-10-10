@@ -36,6 +36,7 @@ def is_date_in_last_line(todays_date, filepath):
 
     return todays_date in last_line
 
+
 def is_file_empty(filepath):
     """
     Checks if a file has 0 lines.
@@ -47,6 +48,7 @@ def is_file_empty(filepath):
 
     """
     return os.stat(filepath).st_size == 0
+
 
 def delete_last_line(filepath):
     """
@@ -117,6 +119,3 @@ def count_lines(filepath):
             return 0
         else:
             return len(filehandle.read().splitlines())
-
-
-
