@@ -4,7 +4,7 @@ Mandarina
 
 ## Functionality
 
-At the moment, Mandarina provides the follwing modules:
+At the moment, Mandarina provides the following modules:
 - Csv file functions
 - Random data generators 
 - Function benchmarking tools
@@ -18,7 +18,7 @@ At the moment, Mandarina provides the follwing modules:
 - Alen Frey
 
 ## Version 
-* Version 0.0.3
+* Version 0.0.4
 
 ## How to install
 ```shell script
