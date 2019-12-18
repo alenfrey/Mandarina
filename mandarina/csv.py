@@ -28,7 +28,7 @@ def is_date_in_last_line(todays_date, filepath):
     :return: True if Date is present in the last line of the file
 
     Example
-    >>> is_date_in_last_line("2018-01-01", "data.csv")
+        is_date_in_last_line("2018-01-01", "data.csv")
 
     """
     line = subprocess.check_output(["tail", "-1", filepath])
@@ -44,7 +44,7 @@ def is_file_empty(filepath):
     :return: True if file has 0 lines, else False
 
     Example
-    >>> is_file_empty("data.csv")
+        is_file_empty("data.csv")
 
     """
     return os.stat(filepath).st_size == 0
@@ -59,7 +59,7 @@ def delete_last_line(filepath):
     :return: None
 
     Example
-    >>> delete_last_line("data.csv")
+        delete_last_line("data.csv")
 
     """
     with open(filepath, "r+", encoding="utf-8") as filehandle:
@@ -92,7 +92,7 @@ def create_headers(filepath, header_row):
     :return True if file was empty and header is written
 
     Example
-    >>> create_headers("data.csv", "date,time,temperature,humidity")
+        create_headers("data.csv", "date,time,temperature,humidity")
 
     """
     with open(filepath, "a") as filehandle:
@@ -111,7 +111,7 @@ def count_lines(filepath):
     :return: Number of lines contained in the file.
 
     Example
-    >>> count_lines("data.csv")
+        count_lines("data.csv")
 
     """
     with codecs.open(filepath, encoding="utf-8", errors="ignore") as filehandle:

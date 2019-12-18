@@ -15,8 +15,8 @@ def random_string(length=6, chars=string.ascii_letters):
     :param chars: Charset to choose chracters from
     :return: Randomly generated string
 
-    Example
-    >>> random_string(30, string.ascii_letters + string.digits)
+    Example:
+        random_string(30, string.ascii_letters + string.digits)
 
     """
     return "".join(random.choice(chars) for _ in range(length))
@@ -32,9 +32,9 @@ def random_datetime(start, end):
     :return: A random Datetime object
 
     Example
-    >>> from_date = datetime.datetime(year=2001, month=1, day=1)
-    >>> to_date = datetime.datetime.now()
-    >>> random_datetime(from_date, to_date)
+        from_date = datetime.datetime(year=2001, month=1, day=1)
+        to_date = datetime.datetime.now()
+        random_datetime(from_date, to_date)
 
     """
     delta = end - start

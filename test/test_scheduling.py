@@ -1,12 +1,12 @@
-from mandarina.timing import *
+from mandarina.scheduling import *
 import unittest
 
 
-class TimingTest(unittest.TestCase):
+class SchedulingTest(unittest.TestCase):
     def test(self):
         pass
 
-    def test_create_dir_if_doesnt_exist(self):
+    def test_run_function_every_n_seconds_thread(self):
         def fn(*s):
             print(s)
 

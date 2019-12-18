@@ -15,7 +15,7 @@ class CsvTests(unittest.TestCase):
         todays_date = str(datetime.datetime.now().date())
         with open("test.csv", "w") as filehandle:
             filehandle.write(str(datetime.datetime.now()) + "\n")
-        self.assertTrue(day_is_already_written(todays_date, "test.csv"))
+        self.assertTrue(is_date_in_last_line(todays_date, "test.csv"))
         delete_file("test.csv")
 
     def test_delete_last_line(self):

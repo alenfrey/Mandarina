@@ -1,12 +1,14 @@
 """
-This module contains benchmarking tools for functions.
+This module contains code benchmarking tools.
 """
 
-import random
 import time
-import sys
 import statistics
+import psutil
+import os
 
+from functools import wraps
+from mandarina.file import convert_size_bytes_to_human_readable_format
 
 class Benchmark:
     """
@@ -28,7 +30,7 @@ class Benchmark:
                  deviation.
 
         Example
-        >>> Benchmark.run(lambda: time.sleep(1), 100)
+            Benchmark.run(lambda: time.sleep(1), 100)
 
         """
         timings = []
@@ -52,3 +54,44 @@ class Benchmark:
                         )
                     )
         return (median, mean, statistics.stdev(timings, mean))
+
+
+def timer(f):
+    """
+       Wraps a function in order to capture and print the
+       execution time.
+
+       Example
+           @timer
+           def f(x):
+               print(x)
+
+       """
+    @wraps(f)
+    def wrap(*args, **kw):
+        start_time = time.time()
+        result = f(*args, **kw)
+        end_time = time.time()
+        print (f"Function {f.__name__} with args {args, kw} took: {(end_time - start_time):.4f} seconds.")
+        return result
+    return wrap
+
+
+def get_process_memory_usage(readable=True):
+    """
+        Returns the memory usage of the current process the python
+        script is running in.
+
+        :param:  If readable is True the memory usage is returned
+                 in a human readable format.
+        :return: Memory usage in bytes or human readable format.
+
+        Example
+            get_process_memory_usage()
+
+        """
+    process = psutil.Process(os.getpid())
+    if readable:
+        return convert_size_bytes_to_human_readable_format(process.memory_full_info()[0])
+    else:
+        return process.memory_full_info()[0]

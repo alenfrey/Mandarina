@@ -71,10 +71,10 @@ def count_files_in_dir(dirpath):
 
 def convert_size_bytes_to_human_readable_format(size_bytes):
     """
-    Converts filesize in bytes to a human readable format.
+    Converts a size in bytes to a human readable format.
 
     :param size_bytes: The size in bytes
-    :return: Bytes converted to readble format
+    :return: Bytes converted to readable format
     """
     if size_bytes == 0:
         return "0B"

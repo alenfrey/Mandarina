@@ -16,4 +16,3 @@ class FileTest(unittest.TestCase):
         bytes = [1024 * i for i in range(5)]
         for size in bytes:
             result = convert_size_bytes_to_human_readable_format(size)
-            print(result)

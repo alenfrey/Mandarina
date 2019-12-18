@@ -1,7 +1,5 @@
 import unittest
-import string
 from mandarina.randomdata import *
-
 
 class RandomdataTests(unittest.TestCase):
     def test(self):
