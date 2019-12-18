@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.5",
     author="Alen Frey",
     author_email="mailtoalenf@gmail.com",
-    description="Personal data science library",
+    description="Friendly data science library",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sunpip/Mandarina",

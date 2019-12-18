@@ -1,14 +1,15 @@
 Mandarina
 ======
-**Mandarina** is a friendly personal Data Science library for Python
+**Mandarina** is a friendly Data Science library for Python
 
 ## Functionality
 
 At the moment, Mandarina provides the following modules:
 - Csv file functions
 - Random data generators 
-- Function benchmarking tools
+- Code benchmarking tools
 - Tools to work with files and directories
+- Scheduling functions 
 
 ## License 
 * Check the [LICENSE](https://github.com/sunpip/Mandarina/blob/master/LICENSE) file
@@ -18,7 +19,7 @@ At the moment, Mandarina provides the following modules:
 - Alen Frey
 
 ## Version 
-* Version 0.0.4
+* Version 0.0.5
 
 ## How to install
 ```shell script
