@@ -10,6 +10,7 @@ import os
 from functools import wraps
 from mandarina.file import convert_size_bytes_to_human_readable_format
 
+
 class Benchmark:
     """
     This class runs a benchmark on a function passed to the
@@ -58,23 +59,74 @@ class Benchmark:
 
 def timer(f):
     """
-       Wraps a function in order to capture and print the
-       execution time.
+    Wraps a function in order to capture and print the
+    execution time.
 
-       Example
-           @timer
-           def f(x):
-               print(x)
+    Example
+        @timer
+        def f(x):
+            print(x)
 
-       """
+    """
+
     @wraps(f)
-    def wrap(*args, **kw):
+    def wrap(*args, **kwargs):
         start_time = time.time()
-        result = f(*args, **kw)
+        result = f(*args, **kwargs)
         end_time = time.time()
-        print (f"Function {f.__name__} with args {args, kw} took: {(end_time - start_time):.4f} seconds.")
+        print(f"Function {f.__name__} with args {args, kwargs} took: {(end_time - start_time):.4f} seconds.")
         return result
+
     return wrap
+
+
+def counter(func):
+    """
+    Wraps a function and counts the number of calls.
+
+    Example:
+        @counter
+        def f(x):
+            pass
+
+        f(3)
+        print(f.calls) # 1
+        f(5)
+        print(f.calls) # 2
+
+    """
+    @wraps(func)
+    def helper(*args, **kwargs):
+        helper.calls += 1
+        return func(*args, **kwargs)
+    helper.calls = 0
+    return helper
+
+
+def start_timing():
+    """
+    This closure function calculates the elapsed time in seconds since its initialization
+    each time it is invoked.
+
+    Example
+        # Initialize
+        elapsed_time = start_timing()
+
+        time.sleep(1)
+        # Print elapsed time
+        elapsed_time()
+
+        # Get elapsed time
+        et = elapsed_time()
+
+    """
+    CNT = [time.time()] * 2
+
+    def calculate_elapsed_time():
+        CNT[0] = CNT[1] - time.time()
+        print(f"Time elapsed: {abs(CNT[0]):9.2f} seconds")
+        return abs(CNT[0])
+    return calculate_elapsed_time
 
 
 def get_process_memory_usage(readable=True):
