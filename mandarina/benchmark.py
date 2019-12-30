@@ -95,10 +95,12 @@ def counter(func):
         print(f.calls) # 2
 
     """
+
     @wraps(func)
     def helper(*args, **kwargs):
         helper.calls += 1
         return func(*args, **kwargs)
+
     helper.calls = 0
     return helper
 
@@ -126,6 +128,7 @@ def start_timing():
         CNT[0] = CNT[1] - time.time()
         print(f"Time elapsed: {abs(CNT[0]):9.2f} seconds")
         return abs(CNT[0])
+
     return calculate_elapsed_time
 
 
