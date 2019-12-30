@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/sunpip/Mandarina.svg?token=Lee4ZEjwb1BeBBACz4Hc&branch=master)](https://travis-ci.com/sunpip/Mandarina)
+
 Mandarina
 ======
 **Mandarina** is a friendly Data Science library for Python
