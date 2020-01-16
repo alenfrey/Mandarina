@@ -118,6 +118,32 @@ def gen_concatenate(iterators):
         yield from it
 
 
+def gen_write_file(out_filepath, generator_source):
+    """
+    Writes generator output to a file.
+    :param out_filepath: File to write
+    :param generator_source: Generator to consume from
+    :return: None
+    """
+    with open(out_filepath, 'w') as f:
+        for item in generator_source:
+            f.write(str(item))
+
+
+def concatenate_files(top, pattern, out_file):
+    """
+    Writes files found by pattern to a single concatenated file
+    :param top: Directory to search files in
+    :param pattern: Pattern to find files by
+    :return: True if file is written
+    """
+    filenames = gen_find_files_wildcard(pattern, top)
+    files = gen_open_files(filenames)
+    lines = gen_concatenate(files)
+    gen_write_file(out_file, lines)
+    return os.path.isfile(out_file)
+
+
 def gen_grep(pattern, lines):
     """
     Look for a regex pattern in a sequence of lines
