@@ -31,7 +31,7 @@ def random_datetime(start, end):
     :param end: Enddate
     :return: A random Datetime object
 
-    Example
+    Example:
         from_date = datetime.datetime(year=2001, month=1, day=1)
         to_date = datetime.datetime.now()
         random_datetime(from_date, to_date)
