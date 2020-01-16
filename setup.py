@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mandarina",
-    version="0.0.7",
+    version="0.0.8",
     author="Alen Frey",
     author_email="mailtoalenf@gmail.com",
     description="Friendly data science library",
@@ -16,7 +16,6 @@ setuptools.setup(
     install_requires=[
         'psutil',
         'fnmatch',
-        're',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
