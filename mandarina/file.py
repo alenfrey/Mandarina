@@ -130,6 +130,20 @@ def gen_write_file(out_filepath, generator_source):
             f.write(str(item))
 
 
+def lines_from_dir(filepat, dirname):
+    """
+    Creates a generator for all lines of all files matching a pattern
+    in a given directory and its subdirectories
+    :param filepat:
+    :param dirname:
+    :return:
+    """
+    filenames = gen_find_files_wildcard(filepat, dirname)
+    files = gen_open_files(filenames)
+    lines = gen_concatenate(files)
+    return lines
+
+
 def concatenate_files(top, pattern, out_file):
     """
     Writes files found by pattern to a single concatenated file
@@ -137,11 +151,10 @@ def concatenate_files(top, pattern, out_file):
     :param pattern: Pattern to find files by
     :return: True if file is written
     """
-    filenames = gen_find_files_wildcard(pattern, top)
-    files = gen_open_files(filenames)
-    lines = gen_concatenate(files)
+    lines = lines_from_dir(pattern, top)
     gen_write_file(out_file, lines)
     return os.path.isfile(out_file)
+
 
 
 def gen_grep(pattern, lines):
