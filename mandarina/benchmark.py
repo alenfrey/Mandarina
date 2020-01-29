@@ -115,8 +115,6 @@ def start_timing():
         elapsed_time = start_timing()
 
         time.sleep(1)
-        # Print elapsed time
-        elapsed_time()
 
         # Get elapsed time
         et = elapsed_time()
@@ -126,7 +124,6 @@ def start_timing():
 
     def calculate_elapsed_time():
         CNT[0] = CNT[1] - time.time()
-        print(f"Time elapsed: {abs(CNT[0]):9.2f} seconds")
         return abs(CNT[0])
 
     return calculate_elapsed_time
