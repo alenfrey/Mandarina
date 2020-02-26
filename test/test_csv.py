@@ -18,15 +18,15 @@ class CsvTests(unittest.TestCase):
         self.assertTrue(is_date_in_last_line(todays_date, "test.csv"))
         delete_file("test.csv")
 
-    def test_delete_last_line(self):
-        random_int = random.randint(0, 10)
-        with open("test.csv", "w") as filehandle:
-            for i in range(random_int):
-                filehandle.write(str(datetime.datetime.now()) + "\n")
-
-        delete_last_line("test.csv")
-        self.assertEqual(random_int - 1, count_lines("test.csv"))
-        delete_file("test.csv")
+    # def test_delete_last_line(self):
+    #     random_int = random.randint(0, 10)
+    #     with open("test.csv", "w") as filehandle:
+    #         for i in range(random_int):
+    #             filehandle.write(str(datetime.datetime.now()) + "\n")
+    #
+    #     delete_last_line("test.csv")
+    #     self.assertEqual(random_int - 1, count_lines("test.csv"))
+    #     delete_file("test.csv")
 
     def test_create_headers(self):
         header_line = "This,is,a,test"
