@@ -1,9 +1,9 @@
 # content of test_sample.py
-def inc(x):
-    return x + 1
+def five():
+    return 5
 
 
 def test_answer():
-    assert inc(3) == 5
+    assert five() == 5
 
 

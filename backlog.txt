@@ -1,2 +1,2 @@
 Add Random Person generator with Name, Age, Adress and so on
-Generate documentation with Sphinx from the docstrings in the code 
+Generate documentation with Sphinx
