@@ -12,6 +12,8 @@ At the moment, Mandarina provides the following modules:
 - Code benchmarking tools
 - Tools to work with files and directories
 - Scheduling functions 
+- Custom iterators 
+- Image manipulation functions
 
 ## License 
 * Check the [LICENSE](https://github.com/sunpip/Mandarina/blob/master/LICENSE) file
