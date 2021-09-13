@@ -30,7 +30,7 @@ pickleshare==0.7.5
 prompt-toolkit==1.0.15
 pycairo==1.16.2
 pycrypto==2.6.1
-Pygments==2.3.1
+Pygments==2.7.4
 pyxdg==0.26
 requests==2.22.0
 scandir==1.9.0
