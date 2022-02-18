@@ -2,6 +2,10 @@ import time
 import unittest
 from random import random
 
+import sys
+from os import path
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+
 from mandarina.benchmark import Benchmark, start_timing, counter
 from mandarina.benchmark import timer
 from mandarina.benchmark import get_process_memory_usage
@@ -13,7 +17,9 @@ class TestBenchmark(unittest.TestCase):
 
     def test_benchmark(self):
         execution_time = 0.1
-        result = Benchmark.run(lambda: time.sleep(execution_time), 10, print_output=False)
+        result = Benchmark.run(
+            lambda: time.sleep(execution_time), 10, print_output=False
+        )
         self.assertAlmostEqual(result[0], execution_time, 2)
         self.assertAlmostEqual(result[1], execution_time, 2)
 

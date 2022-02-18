@@ -1,6 +1,10 @@
 import unittest
 from mandarina.randomdata import *
 
+import sys
+from os import path
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+
 class RandomdataTests(unittest.TestCase):
     def test(self):
         pass

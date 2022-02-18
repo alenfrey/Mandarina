@@ -4,6 +4,10 @@ import unittest
 import random
 import datetime
 
+import sys
+from os import path
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+
 from mandarina.file import delete_file
 
 

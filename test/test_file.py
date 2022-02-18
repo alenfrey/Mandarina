@@ -1,6 +1,8 @@
 from mandarina.file import *
 import unittest
-
+import sys
+from os import path
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
 class FileTest(unittest.TestCase):
     def test(self):
