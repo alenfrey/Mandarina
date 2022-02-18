@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mandarina",
-    version="0.0.11",
+    version="0.0.12",
     author="Alen Frey",
     author_email="mailtoalenf@gmail.com",
     description="Friendly data science library",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/sunpip/Mandarina",
+    url="https://github.com/sunpip/mandarina",
     packages=setuptools.find_packages(exclude="test"),
     install_requires=[
         'psutil',
@@ -21,4 +21,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    python_requires=">=3.6",
 )

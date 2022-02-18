@@ -5,6 +5,11 @@ import math
 import os
 import fnmatch
 import re
+import hashlib
+
+from pathlib import Path
+from itertools import islice
+from contextlib import redirect_stdout
 
 
 def create_dir_if_doesnt_exist(folderpath):
@@ -184,3 +189,59 @@ def convert_size_bytes_to_human_readable_format(size_bytes):
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
     return f"{s} {size_name[i]}"
+
+
+def md5(file_path):
+    """
+    Returns MD5 hash of file.
+
+    :param file_path: The path to the file to be hashed
+    :return: MD5 hash
+    """
+    hash_md5 = hashlib.md5()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
+
+
+
+def tree(dir_path: Path, output_file_path, level: int=-1, limit_to_directories: bool=False,
+         length_limit: int=1000):
+    """
+    Writes a graphical representation of the folder and file structure
+    to a file, similar to the unix tree command.
+
+    :return: None
+    """
+    with open(output_file_path, 'w') as f:
+        with redirect_stdout(f):
+            """Given a directory Path object print a visual tree structure"""
+            dir_path = Path(dir_path) # accept string coerceable to Path
+            files = 0
+            directories = 0
+            def inner(dir_path: Path, prefix: str='', level=-1):
+                nonlocal files, directories
+                if not level: 
+                    return # 0, stop iterating
+                if limit_to_directories:
+                    contents = [d for d in dir_path.iterdir() if d.is_dir()]
+                else: 
+                    contents = sorted(list(dir_path.iterdir()))
+                pointers = [tee] * (len(contents) - 1) + [last]
+                for pointer, path in zip(pointers, contents):
+                    if path.is_dir():
+                        yield prefix + pointer + path.name
+                        directories += 1
+                        extension = branch if pointer == tee else space 
+                        yield from inner(path, prefix=prefix+extension, level=level-1)
+                    elif not limit_to_directories:
+                        yield prefix + pointer + path.name + " " + md5(path)
+                        files += 1
+            print(dir_path.name)
+            iterator = inner(dir_path, level=level)
+            for line in islice(iterator, length_limit):
+                print(line)
+            if next(iterator, None):
+                print(f'... length_limit, {length_limit}, reached, counted:')
+            print(f'\n{directories} directories' + (f', {files} files' if files else ''))
