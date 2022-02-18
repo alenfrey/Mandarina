@@ -214,6 +214,12 @@ def tree(dir_path: Path, output_file_path, level: int=-1, limit_to_directories: 
 
     :return: None
     """
+
+    space =  '    '
+    branch = '│   '
+    tee =    '├── '
+    last =   '└── '
+
     with open(output_file_path, 'w') as f:
         with redirect_stdout(f):
             """Given a directory Path object print a visual tree structure"""

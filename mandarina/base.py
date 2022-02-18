@@ -44,4 +44,4 @@ def get_iso_timestamp():
     Returns a string of an ISO 8601 timestamp without microseconds
     :return: ISO 8601 timestamp string
     """
-    return datetime.datetime.now().replace(microsecond=0).isoformat()
+    return datetime.now().replace(microsecond=0).isoformat()
