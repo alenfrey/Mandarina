@@ -30,9 +30,9 @@ def overlay(background_image, foreground_image, x_offset, y_offset):
     alpha_l = 1.0 - alpha_s
 
     for c in range(0, 3):
-        background_image[y1:y2, x1:x2, c] = (alpha_s * foreground_image[:, :, c] +
-                                             alpha_l * background_image[y1:y2, x1:x2, c])
+        background_image[y1:y2, x1:x2, c] = (
+            alpha_s * foreground_image[:, :, c]
+            + alpha_l * background_image[y1:y2, x1:x2, c]
+        )
 
     return background_image
-
-

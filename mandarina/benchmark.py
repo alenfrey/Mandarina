@@ -74,7 +74,9 @@ def timer(f):
         start_time = time.time()
         result = f(*args, **kwargs)
         end_time = time.time()
-        print(f"Function {f.__name__} with args {args, kwargs} took: {(end_time - start_time):.4f} seconds.")
+        print(
+            f"Function {f.__name__} with args {args, kwargs} took: {(end_time - start_time):.4f} seconds."
+        )
         return result
 
     return wrap
@@ -131,19 +133,21 @@ def start_timing():
 
 def get_process_memory_usage(readable=True):
     """
-        Returns the memory usage of the current process the python
-        script is running in.
+    Returns the memory usage of the current process the python
+    script is running in.
 
-        :param:  If readable is True the memory usage is returned
-                 in a human readable format.
-        :return: Memory usage in bytes or human readable format.
+    :param:  If readable is True the memory usage is returned
+             in a human readable format.
+    :return: Memory usage in bytes or human readable format.
 
-        Example
-            get_process_memory_usage()
+    Example
+        get_process_memory_usage()
 
-        """
+    """
     process = psutil.Process(os.getpid())
     if readable:
-        return convert_size_bytes_to_human_readable_format(process.memory_full_info()[0])
+        return convert_size_bytes_to_human_readable_format(
+            process.memory_full_info()[0]
+        )
     else:
         return process.memory_full_info()[0]

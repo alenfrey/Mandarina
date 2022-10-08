@@ -23,7 +23,10 @@ def unixtime_to_isotime(unixtime, microseconds):
     :param microseconds: If True microseconds will be visible
     :return:
     """
-    return datetime.fromtimestamp(unixtime).strftime('%Y-%m-%dT%H:%M:%S' + microseconds * '.%f')
+    return datetime.fromtimestamp(unixtime).strftime(
+        "%Y-%m-%dT%H:%M:%S" + microseconds * ".%f"
+    )
+
 
 def apply_async(func, args, *, callback):
     """
@@ -38,6 +41,7 @@ def apply_async(func, args, *, callback):
 
     # Invoke the callback with the result
     callback(result)
+
 
 def get_iso_timestamp():
     """
