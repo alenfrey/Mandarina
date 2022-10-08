@@ -105,7 +105,7 @@ def gen_open_files(filepaths):
     """
 
     for filepath in filepaths:
-        f = open(filepath, 'rt')
+        f = open(filepath, "rt")
         yield f
         f.close()
 
@@ -130,7 +130,7 @@ def gen_write_file(out_filepath, generator_source):
     :param generator_source: Generator to consume from
     :return: None
     """
-    with open(out_filepath, 'w') as f:
+    with open(out_filepath, "w") as f:
         for item in generator_source:
             f.write(str(item))
 
@@ -159,7 +159,6 @@ def concatenate_files(top, pattern, out_file):
     lines = lines_from_dir(pattern, top)
     gen_write_file(out_file, lines)
     return os.path.isfile(out_file)
-
 
 
 def gen_grep(pattern, lines):
@@ -205,9 +204,13 @@ def md5(file_path):
     return hash_md5.hexdigest()
 
 
-
-def tree(dir_path: Path, output_file_path, level: int=-1, limit_to_directories: bool=False,
-         length_limit: int=1000):
+def tree(
+    dir_path: Path,
+    output_file_path,
+    level: int = -1,
+    limit_to_directories: bool = False,
+    length_limit: int = 1000,
+):
     """
     Writes a graphical representation of the folder and file structure
     to a file, similar to the unix tree command.
@@ -215,39 +218,55 @@ def tree(dir_path: Path, output_file_path, level: int=-1, limit_to_directories: 
     :return: None
     """
 
-    space =  '    '
-    branch = '│   '
-    tee =    '├── '
-    last =   '└── '
+    space = "    "
+    branch = "│   "
+    tee = "├── "
+    last = "└── "
 
-    with open(output_file_path, 'w') as f:
+    with open(output_file_path, "w") as f:
         with redirect_stdout(f):
             """Given a directory Path object print a visual tree structure"""
-            dir_path = Path(dir_path) # accept string coerceable to Path
+            dir_path = Path(dir_path)  # accept string coerceable to Path
             files = 0
             directories = 0
-            def inner(dir_path: Path, prefix: str='', level=-1):
+
+            def inner(dir_path: Path, prefix: str = "", level=-1):
                 nonlocal files, directories
-                if not level: 
-                    return # 0, stop iterating
+                if not level:
+                    return  # 0, stop iterating
                 if limit_to_directories:
                     contents = [d for d in dir_path.iterdir() if d.is_dir()]
-                else: 
+                else:
                     contents = sorted(list(dir_path.iterdir()))
                 pointers = [tee] * (len(contents) - 1) + [last]
                 for pointer, path in zip(pointers, contents):
                     if path.is_dir():
                         yield prefix + pointer + path.name
                         directories += 1
-                        extension = branch if pointer == tee else space 
-                        yield from inner(path, prefix=prefix+extension, level=level-1)
+                        extension = branch if pointer == tee else space
+                        yield from inner(
+                            path, prefix=prefix + extension, level=level - 1
+                        )
                     elif not limit_to_directories:
                         yield prefix + pointer + path.name + " " + md5(path)
                         files += 1
+
             print(dir_path.name)
             iterator = inner(dir_path, level=level)
             for line in islice(iterator, length_limit):
                 print(line)
             if next(iterator, None):
-                print(f'... length_limit, {length_limit}, reached, counted:')
-            print(f'\n{directories} directories' + (f', {files} files' if files else ''))
+                print(f"... length_limit, {length_limit}, reached, counted:")
+            print(
+                f"\n{directories} directories" + (f", {files} files" if files else "")
+            )
+
+
+def change_working_dir_to_file_dir():
+    """
+    Changes the script working dir to the directory
+    the script is currently located.
+    """
+    abspath = os.path.abspath(__file__)
+    dname = os.path.dirname(abspath)
+    os.chdir(dname)
